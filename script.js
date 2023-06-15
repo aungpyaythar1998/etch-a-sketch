@@ -3,6 +3,7 @@ function sketchThePad(e) {
 }
 
 function createThePad(squarePerSide) {
+    container.innerHTML = "";
     for(let i = 0; i < squarePerSide; i++) {
         const rollDiv = document.createElement("div");
         rollDiv.classList.add("roll");
@@ -19,6 +20,15 @@ function createThePad(squarePerSide) {
 const container = document.createElement("div");
 container.classList.add("container");
 document.body.appendChild(container);
+
+const button = document.querySelector("#button-container button");
+button.addEventListener("click", () => {
+    let numOfSquares;
+    do {
+        numOfSquares = Number(prompt("Enter the number of squares in a 600-px side (0 < squares <= 100)"));
+    } while(numOfSquares > 100 || numOfSquares <= 0 || isNaN(numOfSquares));
+    createThePad(numOfSquares);
+})
 
 createThePad(100);
 

@@ -4,14 +4,31 @@
     box-sizing: border-box;
 }
 
+#button-container {
+    display: flex;
+    margin: 12px 0;
+    justify-content: center;
+}
+
+#button-container button {
+    font-size: 1.2em;
+    border: none;
+    border-radius: 0.4em;
+    padding: 0.5em;
+    color: white;
+    background: grey;
+}
+
 .container {
-    min-width: 600px;
-    width: 600px;
-    min-height: 600px;
-    margin: 0 auto;
+    box-sizing: content-box;
+    min-width: 800px;
+    width: 800px;
+    min-height: 800px;
+    margin: 0 auto 1.8em auto;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    border: 12px outset #7e8491;
+    background: black;
 }
 
 .roll {
@@ -27,5 +44,5 @@
 }
 
 .sketched {
-    background: red;
+    background: white;
 }
