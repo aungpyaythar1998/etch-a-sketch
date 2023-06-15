@@ -1,13 +1,42 @@
-function randomColor() {
+function getRandomColor() {
     let red = Math.floor(Math.random() * 255);
     let green = Math.floor(Math.random() * 255);
     let blue = Math.floor(Math.random() * 255);
+    baselineColor = [red, green, blue];
     return `rgb(${red}, ${green}, ${blue})`;
 }
 
+function checkIfBlack(color) {
+    return (color[0] == 0 && color[1] == 0 && color[2] == 0);
+}
+
+function setDarkerToneToBaseline() {
+    let newColor = [];
+
+    if (checkIfBlack(baselineColor)) {
+        return getRandomColor();
+    }
+    for(eachAspect of baselineColor) {
+        eachAspect -= eachAspect * 0.1
+        if (eachAspect < 0) {
+            eachAspect = 0;
+        }
+        newColor.push(Math.floor(eachAspect));
+    }
+    baselineColor = newColor;
+    return `rgb(${newColor[0]}, ${newColor[1]}, ${newColor[2]})`;
+}
+
 function sketchThePad(e) {
-    // e.target.classList.add("sketched");
-    e.target.style.backgroundColor = randomColor();
+    let sketchColor;
+
+    if (baselineColor.length == 3) {
+        sketchColor = setDarkerToneToBaseline();
+    } else {
+        sketchColor = getRandomColor();
+    }
+
+    e.target.style.backgroundColor = sketchColor;
 }
 
 function createThePad(squarePerSide) {
@@ -38,7 +67,7 @@ button.addEventListener("click", () => {
     createThePad(numOfSquares);
 })
 
-let baseLineColor = [];
+let baselineColor = [];
 
 createThePad(100);
 

@@ -28,7 +28,7 @@
     display: flex;
     flex-direction: column;
     border: 12px outset #7e8491;
-    background: black;
+    background: #cedbd0;
 }
 
 .roll {
