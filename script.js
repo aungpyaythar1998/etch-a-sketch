@@ -60,10 +60,16 @@ document.body.appendChild(container);
 
 const button = document.querySelector("#button-container button");
 button.addEventListener("click", () => {
+    let userInput;
     let numOfSquares;
     do {
-        numOfSquares = Number(prompt("Enter the number of squares in a 600-px side (0 < squares <= 100)"));
-    } while(numOfSquares > 100 || numOfSquares <= 0 || isNaN(numOfSquares));
+        userInput = prompt("Enter the number of squares in a 600-px side (0 < squares <= 100)");
+        if(userInput === null) {
+            return;
+        }
+        numOfSquares = Number(userInput);
+    } while(numOfSquares > 100 || numOfSquares <= 0);
+
     createThePad(numOfSquares);
 })
 
