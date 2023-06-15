@@ -1,5 +1,13 @@
+function randomColor() {
+    let red = Math.floor(Math.random() * 255);
+    let green = Math.floor(Math.random() * 255);
+    let blue = Math.floor(Math.random() * 255);
+    return `rgb(${red}, ${green}, ${blue})`;
+}
+
 function sketchThePad(e) {
-    e.target.classList.add("sketched");
+    // e.target.classList.add("sketched");
+    e.target.style.backgroundColor = randomColor();
 }
 
 function createThePad(squarePerSide) {
@@ -29,6 +37,8 @@ button.addEventListener("click", () => {
     } while(numOfSquares > 100 || numOfSquares <= 0 || isNaN(numOfSquares));
     createThePad(numOfSquares);
 })
+
+let baseLineColor = [];
 
 createThePad(100);
 
