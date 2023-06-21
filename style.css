@@ -20,6 +20,11 @@
     background: grey;
 }
 
+#button-container button:hover {
+    color: black;
+    background-color: #e3e3e3;
+}
+
 .container {
     box-sizing: content-box;
     min-width: 800px;
