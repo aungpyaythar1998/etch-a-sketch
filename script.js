@@ -7,7 +7,7 @@ function getRandomColor() {
 }
 
 function checkIfBlack(color) {
-    return (color[0] == 0 && color[1] == 0 && color[2] == 0);
+    return (color[0] <= 10 && color[1] <= 10 && color[2] <= 10);
 }
 
 function makeBaseColorDarker() {
@@ -55,6 +55,11 @@ function sketchThePad(e) {
 }
 
 function changeColorMode(e) {
+    const currentActiveMode = document.querySelector(".active-color-mode");
+    if (currentActiveMode) {
+        currentActiveMode.classList.toggle("active-color-mode");
+    }
+    e.target.classList.toggle("active-color-mode");
     colorMode = e.target.id;
 }
 

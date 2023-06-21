@@ -47,3 +47,7 @@
     flex: 1;
     width: 6.25%;
 }
+
+#button-container .active-color-mode {
+    background-color: #5ec94c;
+}
