@@ -58,7 +58,7 @@ const container = document.createElement("div");
 container.classList.add("container");
 document.body.appendChild(container);
 
-const button = document.querySelector("#button-container button");
+const button = document.querySelector("#button-container #enter-prompt");
 button.addEventListener("click", () => {
     let userInput;
     let numOfSquares;
