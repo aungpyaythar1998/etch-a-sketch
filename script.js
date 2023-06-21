@@ -10,7 +10,7 @@ function checkIfBlack(color) {
     return (color[0] == 0 && color[1] == 0 && color[2] == 0);
 }
 
-function setDarkerToneToBaseline() {
+function makeBaseColorDarker() {
     let newColor = [];
 
     if (checkIfBlack(baselineColor)) {
@@ -27,16 +27,35 @@ function setDarkerToneToBaseline() {
     return `rgb(${newColor[0]}, ${newColor[1]}, ${newColor[2]})`;
 }
 
+function getRandomProgression() {
+    if (baselineColor.length == 3) {
+        return makeBaseColorDarker();
+    } else {
+        return getRandomColor();
+    }
+}
+
+function getRainbowColor() {
+    if(baselineColor.length != 0) {
+        baselineColor = [];
+    }
+    return getRandomColor();
+}
+
 function sketchThePad(e) {
     let sketchColor;
 
-    if (baselineColor.length == 3) {
-        sketchColor = setDarkerToneToBaseline();
-    } else {
-        sketchColor = getRandomColor();
+    if (colorMode == "rainbow-mode") {
+        sketchColor = getRainbowColor();
+    } else if (colorMode == "progress-mode") {
+        sketchColor = getRandomProgression();
     }
 
     e.target.style.backgroundColor = sketchColor;
+}
+
+function changeColorMode(e) {
+    colorMode = e.target.id;
 }
 
 function createThePad(squarePerSide) {
@@ -54,12 +73,7 @@ function createThePad(squarePerSide) {
     }
 }
 
-const container = document.createElement("div");
-container.classList.add("container");
-document.body.appendChild(container);
-
-const button = document.querySelector("#button-container #enter-prompt");
-button.addEventListener("click", () => {
+function askPrompt(e) {
     let userInput;
     let numOfSquares;
     do {
@@ -71,9 +85,32 @@ button.addEventListener("click", () => {
     } while(numOfSquares > 100 || numOfSquares <= 0);
 
     createThePad(numOfSquares);
-})
+}
 
+let colorMode = "rainbow-mode";
 let baselineColor = [];
+
+const buttons = document.querySelectorAll("#button-container button");
+buttons.forEach(eachButton => {
+    if (eachButton.id == "ask-prompt") {
+        eachButton.addEventListener("click", askPrompt);
+    } else if (eachButton.className == "color-mode") {
+        eachButton.addEventListener("click", changeColorMode);
+    } else {
+        eachButton.addEventListener("click", e => {
+            let cells = document.querySelectorAll(".container .cell");
+            cells.forEach(eachCell => {
+                if (eachCell.style.backgroundColor) {
+                    eachCell.style.setProperty("background-color", "#cedbd0");
+                }
+            }) ;
+        });
+    }
+});
+
+const container = document.createElement("div");
+container.classList.add("container");
+document.body.appendChild(container);
 
 createThePad(100);
 
