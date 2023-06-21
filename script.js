@@ -63,7 +63,7 @@ button.addEventListener("click", () => {
     let userInput;
     let numOfSquares;
     do {
-        userInput = prompt("Enter the number of squares in a 600-px side (0 < squares <= 100)");
+        userInput = prompt("Enter the number of squares in a 800-px side (0 < squares <= 100)");
         if(userInput === null) {
             return;
         }
