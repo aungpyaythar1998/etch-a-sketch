@@ -99,7 +99,7 @@ const buttons = document.querySelectorAll("#button-container button");
 buttons.forEach(eachButton => {
     if (eachButton.id == "ask-prompt") {
         eachButton.addEventListener("click", askPrompt);
-    } else if (eachButton.className == "color-mode") {
+    } else if (eachButton.className.includes("color-mode")) {
         eachButton.addEventListener("click", changeColorMode);
     } else {
         eachButton.addEventListener("click", e => {
